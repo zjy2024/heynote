@@ -13,29 +13,13 @@ const isMobileDevice = window.matchMedia("(max-width: 600px)").matches
 let autoUpdateCallbacks = null
 let currencyData = null
 
-let platform
-const uaPlatform = window.navigator?.userAgentData?.platform || window.navigator.platform
-if (uaPlatform.indexOf("Win") !== -1) {
-    platform = {
-        isMac: false,
-        isWindows: true,
-        isLinux: false,
-    }
-}  else if (uaPlatform.indexOf("Linux") !== -1) {
-    platform = {
-        isMac: false,
-        isWindows: false,
-        isLinux: true,
-    }
-} else {
-    platform = {
-        isMac: true,
-        isWindows: false,
-        isLinux: false,
-    }
-}
-platform.isWebApp = true
-
+const uaPlatform = window.navigator?.userAgentData?.platform || window.navigator.platform;
+const platform = {
+  isMac: uaPlatform.indexOf("Win") === -1 && uaPlatform.indexOf("Linux") === -1,
+  isWindows: uaPlatform.indexOf("Win")!== -1,
+  isLinux: uaPlatform.indexOf("Linux")!== -1
+};
+platform.isWebApp = true;
 
 class IpcRenderer {
     constructor() {

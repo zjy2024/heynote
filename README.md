@@ -62,9 +62,6 @@ To run the tests:
 > npm run test
 ```
 
-To run the tests in the Playwright UI:
-
-```
 > npm run test:ui
 ```
 
